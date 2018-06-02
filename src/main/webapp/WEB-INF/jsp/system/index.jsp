@@ -89,7 +89,7 @@
 		                    <div class="pointer"></div>
 		                </td>
 		                <td style="vertical-align:top" height="600px" width="100%">
-		                	<br/><iframe id="mainPage" src="" frameborder="0" height="580px" width="100%"></iframe><br/>
+		                	<br/><iframe id="mainPage" src="${basePath}/ad" frameborder="0" height="580px" width="100%"></iframe><br/>
 		                 </td>
 		            </tr>
 		            </tbody>
