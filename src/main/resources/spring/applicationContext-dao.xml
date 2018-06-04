@@ -50,7 +50,7 @@
         <!-- 扫描java bean，自动使用别名 -->
         <property name="typeAliasesPackage" value="org.imooc.bean"/>
         <!-- 扫描mybatis的SQL配置文件 -->
-        <!--<property name="mapperLocations" value="classpath:mapper/*.xml"/>-->
+        <property name="mapperLocations" value="classpath:mapper/*.xml"/>
     </bean>
 
     <!-- 扫描Dao接口包 -->
@@ -58,5 +58,7 @@
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
         <property name="basePackage" value="org.imooc.dao"/>
     </bean>
+
+    <context:component-scan base-package="org.imooc.dao" annotation-config="true"/>
 
 </beans>
