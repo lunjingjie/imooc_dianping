@@ -32,4 +32,15 @@ public class AdController {
         model.addAttribute("searchParam", adDto);
         return "/content/adList";
     }
+
+    @RequestMapping("/addInit")
+    public String addInit() {
+        return "/content/adAdd";
+    }
+
+    @RequestMapping("/add")
+    public String add(AdDto adDto) {
+        adService.add(adDto);
+        return "/content/adList";
+    }
 }

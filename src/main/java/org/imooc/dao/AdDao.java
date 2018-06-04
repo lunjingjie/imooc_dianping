@@ -13,4 +13,11 @@ public interface AdDao {
      * @return 广告列表
      */
     List<Ad> selectByPage(Ad ad);
+
+    /**
+     * 增加广告记录
+     * @param ad
+     * @return 新增条数
+     */
+    int insert(Ad ad);
 }

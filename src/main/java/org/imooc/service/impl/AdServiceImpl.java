@@ -9,6 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,7 +23,8 @@ public class AdServiceImpl implements AdService {
 
     private final AdDao adDao;
 
-    private String adImageUrl = "http://localhost:8081/upload/ad/";
+    @Value("${adImage.savePath}")
+    private String adImageUrl;
 
     @Autowired
     public AdServiceImpl(AdDao adDao) {
@@ -41,5 +44,33 @@ public class AdServiceImpl implements AdService {
             BeanUtils.copyProperties(ad, adDtoTemp);
         }
         return result;
+    }
+
+    @Override
+    public boolean add(AdDto adDto) {
+        Ad ad = new Ad();
+        ad.setTitle(adDto.getTitle());
+        ad.setLink(adDto.getLink());
+        ad.setWeight(adDto.getWeight());
+        if(adDto.getImgFile() != null && adDto.getImgFile().getSize() > 0){
+            String fileName = System.currentTimeMillis() + "_" + adDto.getImgFile().getOriginalFilename();
+            File file = new File(adImageUrl + fileName);
+            File fileFolder = new File(adImageUrl);
+            if (!fileFolder.exists()) {
+                fileFolder.mkdirs();
+            }
+            try {
+                adDto.getImgFile().transferTo(file);
+                ad.setImgFileName(fileName);
+                adDao.insert(ad);
+                return true;
+            } catch (IOException e) {
+                // TODO 使用日志记录
+                e.printStackTrace();
+                return false;
+            }
+        } else {
+            return false;
+        }
     }
 }

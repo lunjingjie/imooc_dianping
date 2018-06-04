@@ -25,6 +25,4 @@ public class AdDto extends Ad {
     public void setImgFile(MultipartFile imgFile) {
         this.imgFile = imgFile;
     }
-
-
 }
