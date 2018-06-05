@@ -54,11 +54,11 @@ public class AdServiceImpl implements AdService {
         ad.setWeight(adDto.getWeight());
         if(adDto.getImgFile() != null && adDto.getImgFile().getSize() > 0){
             String fileName = System.currentTimeMillis() + "_" + adDto.getImgFile().getOriginalFilename();
-            File file = new File(adImageUrl + fileName);
             File fileFolder = new File(adImageUrl);
             if (!fileFolder.exists()) {
                 fileFolder.mkdirs();
             }
+            File file = new File(adImageUrl + fileName);
             try {
                 adDto.getImgFile().transferTo(file);
                 ad.setImgFileName(fileName);

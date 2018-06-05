@@ -41,6 +41,6 @@ public class AdController {
     @RequestMapping("/add")
     public String add(AdDto adDto) {
         adService.add(adDto);
-        return "/content/adList";
+        return "/content/adAdd";
     }
 }
