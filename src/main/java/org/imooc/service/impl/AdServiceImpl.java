@@ -26,6 +26,9 @@ public class AdServiceImpl implements AdService {
     @Value("${adImage.savePath}")
     private String adImageUrl;
 
+    @Value("${adImage.url}")
+    private String imageUrl;
+
     @Autowired
     public AdServiceImpl(AdDao adDao) {
         this.adDao = adDao;
@@ -40,7 +43,9 @@ public class AdServiceImpl implements AdService {
         for (Ad ad : adList) {
             AdDto adDtoTemp = new AdDto();
             result.add(adDtoTemp);
-            adDtoTemp.setImg(adImageUrl + ad.getImgFileName());
+            adDtoTemp.setImg(imageUrl + ad.getImgFileName());
+            ad.setImgFileName(null);
+            ad.setPage(null);
             BeanUtils.copyProperties(ad, adDtoTemp);
         }
         return result;

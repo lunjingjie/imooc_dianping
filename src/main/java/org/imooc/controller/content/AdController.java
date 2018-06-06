@@ -1,5 +1,6 @@
 package org.imooc.controller.content;
 
+import org.imooc.constant.PageCodeEnum;
 import org.imooc.dto.AdDto;
 import org.imooc.service.AdService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,12 @@ public class AdController {
     }
 
     @RequestMapping("/add")
-    public String add(AdDto adDto) {
-        adService.add(adDto);
+    public String add(AdDto adDto, Model model) {
+        if (adService.add(adDto)) {
+            model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.ADD_SUCCES);
+        } else {
+            model.addAttribute(PageCodeEnum.KEY, PageCodeEnum.ADD_FAIL);
+        }
         return "/content/adAdd";
     }
 }

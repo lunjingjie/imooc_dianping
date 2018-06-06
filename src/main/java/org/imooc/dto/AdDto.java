@@ -6,6 +6,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AdDto extends Ad {
+    /**
+     * app中图片的链接
+     */
     private String img;
 
     private MultipartFile imgFile;
