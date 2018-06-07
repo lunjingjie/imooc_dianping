@@ -8,14 +8,12 @@ package org.imooc.constant;
  */
 
 public enum PageCodeEnum {
-    /**
-     * 增加成功
-     */
     ADD_SUCCES(1000, "新增成功!"),
-    /**
-     * 新增失败
-     */
-    ADD_FAIL(1001, "新增失败！"),;
+    ADD_FAIL(1001, "新增失败！"),
+    DELETE_SUCCESS(1100, "删除成功"),
+    DELETE_FAIL(1101, "删除失败"),
+    MODIFY_SUCCESS(1200, "修改成功了"),
+    MODIFY_FAIL(1201, "修改失败了"),;
 
     private Integer code;
     private String msg;
